@@ -31,9 +31,9 @@ const DEMO = {
     {id:'t5',title:'Подтвердить участие Анны в занятии',student:'s4',assignee:'Администратор',time:'Сегодня',priority:'low',status:'done'}
   ],
   payments:[
-    {id:'p1',student:'s1',date:'3 октября',sum:6200,source:'Точка',state:'confirmed'},
-    {id:'p2',student:'s4',date:'3 октября',sum:3100,source:'Ручная отметка',state:'confirmed'},
-    {id:'p3',student:'s6',date:'2 октября',sum:6200,source:'Точка',state:'confirmed'}
+    {id:'p1',student:'s1',date:'3 октября',sum:6200,paymentType:'Безналичный расчёт',state:'confirmed'},
+    {id:'p2',student:'s4',date:'3 октября',sum:3100,paymentType:'Наличные',state:'confirmed'},
+    {id:'p3',student:'s6',date:'2 октября',sum:6200,paymentType:'Безналичный расчёт',state:'confirmed'}
   ],
   deals:[{id:'d1',student:'s5',stage:0},{id:'d2',student:'s7',stage:1},{id:'d3',student:'s6',stage:2}],
   threads:{
