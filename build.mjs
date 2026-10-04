@@ -1,0 +1,15 @@
+import { readFile, writeFile, mkdir } from 'node:fs/promises';
+const root = new URL('./', import.meta.url);
+const read = path => readFile(new URL(path, root), 'utf8');
+let html = await read('prototype/index.html');
+const css = await read('prototype/styles.css');
+const data = await read('prototype/data.js');
+const app = await read('prototype/app.js');
+html = html.replace(/<link rel="stylesheet" href="styles.css">/, () => `<style>\n${css}\n</style>`);
+html = html.replace(/<script defer src="data.js"><\/script>/, () => `<script>\n${data.replace(/<\/script/gi, '<\\/script')}\n</script>`);
+html = html.replace(/<script defer src="app.js"><\/script>/, () => `<script>\n${app.replace(/<\/script/gi, '<\\/script')}\n</script>`);
+if (/<script[^>]+src=|<link[^>]+rel="stylesheet"/.test(html)) throw new Error('В HTML остались внешние ресурсы');
+await mkdir(new URL('outputs/', root), { recursive: true });
+await writeFile(new URL('outputs/CRM_IT-Факультеты_прототип.html', root), html);
+await writeFile(new URL('prototype/preview.html', root), html);
+console.log('Готов переносимый HTML: outputs/CRM_IT-Факультеты_прототип.html');
